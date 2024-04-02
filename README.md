@@ -1,5 +1,6 @@
 This is an example implementation of a REST API for Odoo.  
-Using this addon іn the backend, you can create mobile (and other) applications and manage entities such as:
+Using this addon you have an opportunity to connect to Odoo and manage entities (from your mobile and other applications) such as:
+
 
 - Projects
 - Tasks
