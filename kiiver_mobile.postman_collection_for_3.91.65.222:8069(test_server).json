@@ -1,0 +1,598 @@
+{
+	"info": {
+		"_postman_id": "12dfa633-c847-4758-98f1-2dc950c9044f",
+		"name": "kiiver_mobile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project?name=App Mobile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project?name=App Mobile",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "App Mobile"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4?scrum_project=True&filter=widget",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4?scrum_project=True&filter=widget",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4"
+							],
+							"query": [
+								{
+									"key": "scrum_project",
+									"value": "True"
+								},
+								{
+									"key": "filter",
+									"value": "widget"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4?scrum_project=True&filter=tasks_columns",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4?scrum_project=True&filter=tasks_columns",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4"
+							],
+							"query": [
+								{
+									"key": "scrum_project",
+									"value": "True"
+								},
+								{
+									"key": "filter",
+									"value": "tasks_columns"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "delete_from_mobile_app",
+									"value": "True",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4"
+							]
+						},
+						"description": "deliteproject from mobile app (not from DB)"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58?filter=widget",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58?filter=widget",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "widget"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "column_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58"
+							]
+						},
+						"description": "change column for task"
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "kanban_state",
+									"value": "blocked",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "initially_planned_hours",
+									"value": "30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58?filter=full",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58?filter=full",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "full"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "timesheet",
+			"item": [
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58/timesheet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_go",
+									"value": "1575900803",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "8.0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58/timesheet",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58",
+								"timesheet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://3.91.65.222:8069/api/v1/project/4/task/58/timesheet/83",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "PROFILE_ID",
+								"value": "10",
+								"type": "text"
+							},
+							{
+								"key": "ACCESS_TOKEN",
+								"value": "0c098bd51c8cd1396ac934ae86db2ee5ac668770",
+								"type": "text"
+							},
+							{
+								"key": "EXPIRES_IN",
+								"value": "36000",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "duration",
+									"value": "15.0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.91.65.222:8069/api/v1/project/4/task/58/timesheet/83",
+							"protocol": "http",
+							"host": [
+								"3.91.65.222"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"4",
+								"task",
+								"58",
+								"timesheet",
+								"83"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "http://3.91.65.222:8069/api/v1/auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"login\": \"nikita.vorobyov@1000geeks.com\", \n\"password\": \"nikita.vorobyov@1000geeks.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.91.65.222:8069/api/v1/auth",
+					"protocol": "http",
+					"host": [
+						"3.91.65.222"
+					],
+					"port": "8069",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				},
+				"description": "Auth"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

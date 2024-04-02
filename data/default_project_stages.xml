@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_stage_data_1" model="project.task.type">
+        <field name="sequence">1</field>
+        <field name="name">Future</field>
+        <field name="active" eval="True"/>
+        <field name="fold" eval="False"/>
+
+    </record>
+
+    <record id="project_stage_data_2" model="project.task.type">
+        <field name="sequence">2</field>
+        <field name="name">In progress</field>
+        <field name="active" eval="True"/>
+        <field name="fold" eval="False"/>
+    </record>
+
+</odoo>

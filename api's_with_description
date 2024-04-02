@@ -1,0 +1,432 @@
+Authorization
+/api/v1/auth
+method POST 
+Request
+Body:
+{
+'login':str,
+'password':str 
+}
+
+Response
+
+Code:200
+{
+"description":"successfully authorized"/"there are system problems for the authorization process",  (в зависимости от з начения параметра "ok")
+"ok":bool,
+"data":{'token': str,
+        'expires_in': int,
+        'profile_id': int,
+        'login': str}
+}
+Code: 401 {}
+
+
+We will use Token from  response in the other apis.
+It is need to add key ACCESS_TOKEN  and value on the Header  of each request.
+Pleace,check  a postman an example 
+
+-------------------------------
+Getting project id by project name
+
+api/v1/project
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+method GET
+
+Parameters:
+"name"= str
+
+
+Response
+
+Code:200
+{
+"description":"the project {{project.name}} exists"/"the project {{project.name}} has internal system problems",
+"ok":bool,
+"project":{name: str,
+ 	   id: int},
+}
+
+Code: 401{}
+Code: 403{}
+Code: 404{'description':'a project with that name does not exist'}
+
+----------------------------
+visible / invisible a project with current id on the mobile app
+/api/v1/project/{project_id}
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Method: PUT
+
+Body:   
+{
+"delete_from_mobile_app":True
+}
+
+Response
+Code: 200
+{
+"description":"now the project {{project.name}} is not displayed in the mobile application"/"the project {{project.name}} is still displayed in the mobile application",
+"ok":bool,
+"project":{name: str,
+ 	   id: int}
+
+}
+
+Code 401 {}
+Code 404 {}
+----------------------------
+Getting a columns` data and a tasks` data  for a project with a current id
+/api/v1/project/{project_id}  
+
+Method: GET
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Parameters:
+"scrum_project"=bool,
+"filter"="tasks_columns"
+
+
+Responses
+Code: 200
+{
+"description":"receiving project data ({{project.name}}) using 'filter':'id_tasks' was a success"/"the project {{project.name}} has internal system problems (project-'filter':'id_tasks')",
+
+"ok":bool,
+"project":{   
+           "id":int,
+           "columns"[{name: str, id:int},...],
+           "tasks": [{name:str, id:int},...]}
+	   }
+}
+
+Code 401{}
+Code 403{} #приходит в случае, когда  параметр "scrum_project"  не передан
+Code 404{}
+----------------------------
+
+Getting a specific data  for a project with a current id
+	number of tasks
+	number of tasks in a current sprint
+	tasks that has a  deadline soon
+	tasks  that started not very many time ago
+ 
+
+api/v1/project/{project_id}  # done
+Method GET
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Parameters:
+"scrum_project"=bool,
+"filter"="widget"
+
+
+Responses
+
+Code: 200
+{   
+"description":"receiving project data ({{project.name}}) using 'filter':'widget' was a success"/"the project {{project.name}} has internal system problems (project-'filter':'widget')",
+"ok":bool,
+
+"project":{"id":int,
+	"numbers_of_tasks": int,
+	"numbers_of_tasks_current_sprint": int, #??? возможно, не нужно--в
+	"deadline_tasks": int,
+	"started_tasks": int}
+}
+Code 401{}
+Code 403{} #приходит в случае, когда  параметр "scrum_project"  не передан
+Code 404{}
+
+
+------------------Block api "Task"-------------
+Getting a task`s data by task id
+
+/api/v1/project/{project_id}/task/{task_id}
+Method: GET
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Parameters:
+"filter"="widget"
+
+Responses
+Code: 200
+{
+"description":"receiving task data ({{task.name}}) using 'filter':'widget' was a success"/"the project {{project.name}} or the task {{task.name}} has internal system problems  (task-'filter':'widget')",
+"ok":bool,
+"project":{"id":int},
+ "task":{   "id":int,
+
+	    "initially_planned_hours": int,
+	    "already_marked_time": int,
+
+	    "deadline": str(with data)/"None"(as string),
+
+	    "status_in_work": bool, # with the star --True, without the star --False
+
+	    "column": "Future" or "In progress",
+	    "blocked": bool,
+	}
+
+}
+
+
+Code 401{}
+Code 404{}
+----------------------------
+
+Moving a task to the other column
+/api/v1/project/{project_id}/task/{task_id}
+
+Method: PUT
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Body:
+{
+"column_id": int # id of a new column
+}
+
+Responses
+
+Code: 200
+{
+"description":"moving task ({{task.name}}) to another column was successful"/"the project {{project.name}} or the task {{task.name}} has internal system problems (moving task to another column)",
+"ok":bool,
+"project":{"id":int},
+"task":{
+	"id":int,
+	"column_id": int} 
+}
+
+Code: 401{}
+Code: 403{}
+Code: 404{}
+
+----------------------------
+
+Marking a task(kanban state)
+/api/v1/project/{project_id}/task/{task_id} - done
+
+
+Method: PUT
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Body:
+{
+"kanban_state": str --  select on of 3 variants 'blocked'/'normal'/'done'
+                    Description:
+                    'blocked' :(blocked -red circle ),
+                    'normal' :(usual state -gray  circle)
+                    'done' :(task was  preapered to  the next stage  -green  circle)
+
+}
+
+Responses
+
+Code: 200{
+"description":"{{task.name}}: task status change was successful"/"the project {{project.name}} or the task {{task.name}} has internal system problems (task status change)",
+"ok":bool,
+"project":{"id":int},
+	"task":{"id":int,
+	"kanban_state": str
+	}
+}
+
+Code: 401{}
+Code: 403{}
+Code: 404{}
+-----------------------------
+Change a planned_hours  of a task 
+/api/v1/project/{project_id}/task/{task_id}
+
+Method: PUT
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Body:
+{
+"initially_planned_hours": int  --new planned_hours
+}
+
+Responses
+
+Code: 200
+{
+"description":"{{task.name}}: task planned_hours change was successful"/"the project {{project.name}} or the task {{task.name}} has internal system problems (task planned_hours change)",
+"ok":bool,
+"project":{"id":int},
+"task":{"id":int,
+	"initially_planned_hours": int
+	}
+}
+Code: 401{}
+Code: 404{}
+------------------------------
+
+Receiving task data
+/api/v1/project/{project_id}/task/{task_id}
+
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Request
+Method: GET
+
+Body:
+
+{
+"scrum_project":bool,
+"filter":"full"
+}
+
+Responses
+Code: 200
+{
+"description":"receiving task data ({{task.name}}) using 'filter':'full' was a success"/"the project {{project.name}} or the task {{task.name}} has internal system problems (task-'filter':'full')",
+"ok":bool,
+"project":{"id":int},
+"task": {
+	"id":int, --
+	"creator_by": str, --
+	"tags": [{id:int,   --
+	      name:str},...],
+    "progress": int,  --
+    "description": str --
+
+	"sprint":[{  --
+	     "id":int,--
+	     "name":str,  --
+	     "release": str --
+	     }]
+
+	    "timesheets": [{ 
+			"id":int
+	    	"date": str,
+	   		"employee": str,
+	   		"description": str,
+	   		"duration": float,}, ...],
+
+	"incidents": [ ---
+	     {"id":int,---
+	      "homework": str, ---
+	      "project": str, --
+	      "task": str, --
+	      "progress": int, --
+	      "creator_id":int,
+	      "creator_by":str,
+          "description": str
+
+	      }, ...],
+
+
+	}
+}
+
+Code 401{}
+Code 403{}
+Code 404 {}
+
+------------------Блок api "Timesheets"-------------
+
+create a Timesheet
+/api/v1/project/{project_id}/task/{task_id}/timesheet/
+
+Method: POST
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Body:
+
+{
+
+        "task_go": int, --  time from start a Unix epoch
+        "duaration": float,
+}
+
+Responses
+
+Code: 201 {
+
+"project":{id: int},
+"task":{id: int},
+"timesheet":{ 
+        	 "task_go": int, time from start a Unix epoch
+	         "duration": float}  -both fields are required when creating a timesheet - you must check their completion on the side of the mobile application 
+}
+
+Code 401{}
+Code 403{}
+Code 404{}
+
+---------------------------------
+
+change data for a Timesheet
+Path: /api/v1/project/{project_id}/task/{task_id}/timesheet/{timesheet_id}
+
+Method: PUT
+Headers:
+TOKEN:  str
+PROFILE_ID: int
+
+Body:
+
+{
+	"task_go": int,  --  time from start a Unix epoch
+	"duration": float
+}
+
+Responses
+
+Code: 200
+{
+"description":"data change for the task {{task.name}} was successful"/"the project {{project.name}} or the task {{task.name}} has internal system problems (data change for task)",
+"ok":bool,
+
+"project":{id: int},
+"task":{id: int},
+
+"timesheet":{
+        	 "task_go": int, --  time from start a Unix epoch
+	        "duration": float}
+
+}
+
+Code 401 {}
+Code 403 {}
+Code 404 {}
+---------------------------------
+
+
+
+
+
+
+
+
+
+
+
